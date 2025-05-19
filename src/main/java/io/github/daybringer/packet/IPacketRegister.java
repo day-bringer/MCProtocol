@@ -1,6 +1,7 @@
 package io.github.daybringer.packet;
 
 import io.github.daybringer.packet.listen.IPacketListener;
+import io.github.daybringer.packet.listen.Listenable;
 import io.github.daybringer.packet.utils.PacketComparable;
 
 public interface IPacketRegister<THandler> extends PacketComparable
@@ -11,7 +12,7 @@ public interface IPacketRegister<THandler> extends PacketComparable
      * @param listener the packet listener to register
      * @return {@code true} if the listener was successfully registered; {@code false} otherwise
      */
-    boolean registerPacketListener(IPacketListener<THandler> listener);
+    boolean registerPacketListener(Listenable listener);
 
 
 }

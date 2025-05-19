@@ -1,7 +1,7 @@
 package io.github.daybringer.packet.handle;
 
 import io.github.daybringer.packet.annotations.PacketCancelHandler;
-import io.github.daybringer.packet.listen.IPacketListener;
+import io.github.daybringer.packet.listen.Listenable;
 import io.github.daybringer.packet.utils.PacketHandlerType;
 import net.minecraft.network.protocol.Packet;
 import org.bukkit.Bukkit;
@@ -64,7 +64,7 @@ public class PacketHandler implements IPacketHandler<RegisteredPacketHandlerCont
      * @return {@code true} if registration succeeded (currently always returns {@code false})
      */
     @Override
-    public boolean registerPacketListener(IPacketListener<RegisteredPacketHandlerContainer> listener)
+    public boolean registerPacketListener(Listenable listener)
     {
         for(Method method : listener.getClass().getDeclaredMethods())
         {
