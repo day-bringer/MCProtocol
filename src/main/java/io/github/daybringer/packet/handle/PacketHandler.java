@@ -100,7 +100,7 @@ public class PacketHandler implements IPacketHandler<RegisteredPacketHandlerCont
             {
                 continue;
             }
-
+            method.setAccessible(true);
             if(method.isAnnotationPresent(io.github.daybringer.packet.annotations.PacketCancelHandler.class))
             {
                 addCancelHandler(packetType, new RegisteredPacketHandlerContainer(listener, method));
@@ -154,8 +154,12 @@ public class PacketHandler implements IPacketHandler<RegisteredPacketHandlerCont
             if(onMainThread)
             {
                 try {
-
-                    Object obj = handler.handle().invoke(handler.instance(), packet);
+                    Method method = handler.handle();
+                    if(!method.canAccess(handler.instance()))
+                    {
+                        method.setAccessible(true);
+                    }
+                    Object obj = method.invoke(handler.instance());
                     //configure if handle has returning type
                     if(obj instanceof Boolean bool)
                         return bool;
