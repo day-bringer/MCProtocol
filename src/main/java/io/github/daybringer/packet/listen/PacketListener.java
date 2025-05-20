@@ -88,7 +88,7 @@ public final class PacketListener implements IPacketListener<RegisteredPacketHan
             }
             else
             {
-                cancelFlow = Bukkit.getScheduler().callSyncMethod(Main.getPlugin(Main.class), ()->packetHandler.callHandlers(packet)).get();
+                cancelFlow = Bukkit.getScheduler().callSyncMethod(Main.getProvidingPlugin(Main.class), ()->packetHandler.callHandlers(packet)).get();
             }
             if(cancelFlow)
             {
@@ -98,7 +98,7 @@ public final class PacketListener implements IPacketListener<RegisteredPacketHan
                 }
                 else
                 {
-                    Bukkit.getScheduler().callSyncMethod(Main.getPlugin(Main.class), ()->packetHandler.callCancelHandlers(packet));
+                    Bukkit.getScheduler().callSyncMethod(Main.getProvidingPlugin(Main.class), ()->packetHandler.callCancelHandlers(packet));
                 }
             }
         }
